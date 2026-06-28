@@ -71,8 +71,8 @@ description: "We build websites and automate your business: social media, AI pho
 
     /* HERO */
     .hero {
-      position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: calc(var(--nav-h) + 80px) 6% 80px; overflow: hidden;
+      position: relative; min-height: 84vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: calc(var(--nav-h) + 80px) 6% 40px; overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0;
@@ -127,7 +127,11 @@ description: "We build websites and automate your business: social media, AI pho
     .section-sub { color: var(--muted); font-size: 1rem; max-width: 500px; }
 
     /* SERVICES OVERVIEW (PILLS) */
-    #services { padding: 100px 0; }
+    #services {
+      padding: 88px 0 100px;
+      background: linear-gradient(180deg, #0f1d3d 0%, #0c1733 100%);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .services-header { text-align: center; margin-bottom: 48px; }
     .services-header .section-sub { margin: 0 auto; }
 
@@ -278,12 +282,6 @@ description: "We build websites and automate your business: social media, AI pho
     </div>
   </div>
 </section>
-
-<div class="cta-band">
-  <h2>Ready to automate your business?</h2>
-  <p>Book a free consultation and we'll map out exactly what automation can do for you.</p>
-  <a href="#contact" class="btn btn-primary">Get Started for Free</a>
-</div>
 
 <section id="contact">
   <div class="container">
