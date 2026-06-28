@@ -1,0 +1,295 @@
+---
+title: "About — Citadel Digital"
+description: "Citadel Digital was founded by Henry White and Keller Leonard to help businesses win online through great websites and smart automation."
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Citadel Digital</title>
+  <meta name="description" content="Citadel Digital was founded by Henry White and Keller Leonard to help businesses win online through great websites and smart automation." />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0b1120; --navy-2: #111827; --navy-3: #1a2540;
+      --blue: #2563eb; --blue-light: #3b82f6; --blue-muted: rgba(37,99,235,0.15);
+      --border: rgba(255,255,255,0.08); --text: #e2e8f0; --muted: #94a3b8; --white: #ffffff; --nav-h: 68px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 6%;
+      z-index: 100; background: rgba(11,17,32,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .nav-brand img { height: 34px; }
+    .nav-brand span { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.06em; color: var(--white); }
+    .nav-brand span em { font-style: normal; color: var(--blue-light); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links .cta { background: var(--blue); color: var(--white) !important; padding: 8px 20px; border-radius: 7px; font-weight: 600 !important; }
+    .nav-links .cta:hover { background: var(--blue-light) !important; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,17,32,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 20px 6%; flex-direction: column; gap: 14px; z-index: 99; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu a.cta { background: var(--blue); border: none; border-radius: 7px; padding: 11px 16px; text-align: center; color: var(--white); margin-top: 4px; }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 6%; }
+    section { position: relative; z-index: 1; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: calc(var(--nav-h) + 72px) 6% 72px;
+      background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 65%), var(--navy);
+      text-align: center; position: relative;
+    }
+    .page-header-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 60% 70% at 50% 20%, black 0%, transparent 75%);
+    }
+    .page-header-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); border: 1px solid rgba(59,130,246,0.3); border-radius: 100px; padding: 5px 14px; margin-bottom: 20px; }
+    .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .page-header p { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin: 0 auto; }
+
+    /* MISSION */
+    #mission { padding: 88px 0; border-bottom: 1px solid var(--border); }
+    .mission-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .mission-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 20px; }
+    .mission-text { color: var(--muted); font-size: 0.93rem; line-height: 1.8; margin-bottom: 16px; }
+    .mission-values { display: flex; flex-direction: column; gap: 16px; }
+    .value { display: flex; gap: 14px; align-items: flex-start; }
+    .value-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+    .value-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .value-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
+
+    .mission-visual { background: var(--navy-2); border: 1px solid var(--border); border-radius: 20px; padding: 36px; }
+    .mv-stat { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .mv-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .mv-stat:first-child { padding-top: 0; }
+    .mv-label { font-size: 0.85rem; color: var(--muted); }
+    .mv-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--white); }
+    .mv-val em { font-style: normal; color: var(--blue-light); }
+
+    /* TEAM */
+    #team { padding: 88px 0; }
+    .team-header { text-align: center; margin-bottom: 60px; }
+    .team-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 12px; }
+    .team-header p { color: var(--muted); font-size: 1rem; max-width: 440px; margin: 0 auto; }
+
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 800px; margin: 0 auto; }
+
+    .team-card { background: var(--navy-2); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+    .team-photo { aspect-ratio: 1; background: var(--navy-3); position: relative; overflow: hidden; }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .team-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--navy-3), rgba(37,99,235,0.1)); }
+    .team-photo-placeholder .initials { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 700; color: rgba(59,130,246,0.3); letter-spacing: -0.02em; }
+    .team-info { padding: 28px; }
+    .team-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .team-role { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 14px; }
+    .team-bio { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
+
+    /* CTA */
+    .cta-section { padding: 88px 0; text-align: center; background: var(--navy-2); border-top: 1px solid var(--border); }
+    .cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--white); margin-bottom: 14px; }
+    .cta-section p { color: var(--muted); font-size: 1rem; max-width: 400px; margin: 0 auto 28px; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 13px 26px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); background: var(--navy); padding: 40px 6% 28px; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand-sm { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .footer-brand-sm img { height: 28px; }
+    .footer-brand-sm span { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: var(--white); }
+    .footer-brand-sm span em { font-style: normal; color: var(--blue-light); }
+    .footer-nav { display: flex; gap: 24px; list-style: none; }
+    .footer-nav a { color: var(--muted); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--blue-light); }
+    .footer-copy { font-size: 0.8rem; color: var(--muted); }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mission-layout { grid-template-columns: 1fr; gap: 48px; }
+      .team-grid { grid-template-columns: 1fr 1fr; max-width: 600px; }
+    }
+    @media (max-width: 520px) {
+      .team-grid { grid-template-columns: 1fr; max-width: 360px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="logo-icon.png" alt="Citadel Digital" />
+    <span>CITADEL <em>DIGITAL</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="index.html#contact" class="cta">Free Consultation</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" onclick="closeMobile()">Services</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="index.html#contact" class="cta" onclick="closeMobile()">Free Consultation</a>
+</div>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-content">
+    <div class="eyebrow">About Us</div>
+    <h1>Built by people who've been in your shoes</h1>
+    <p>We started Citadel Digital because we saw how many good businesses were being left behind online. We're here to change that.</p>
+  </div>
+</div>
+
+<section id="mission">
+  <div class="container">
+    <div class="mission-layout">
+      <div>
+        <h2 class="mission-title">We help businesses compete in a digital world</h2>
+        <p class="mission-text">Most small and mid-sized businesses are great at what they do — but they're running their online presence manually, inconsistently, or not at all. Citadel Digital exists to close that gap.</p>
+        <p class="mission-text">We believe every business deserves the same digital tools and automation that large companies use to dominate their market. We build those systems for you — and keep them running.</p>
+        <div class="mission-values" style="margin-top: 28px;">
+          <div class="value">
+            <div class="value-dot"></div>
+            <div>
+              <div class="value-title">Results over activity</div>
+              <div class="value-desc">We measure success by what moves the needle for your business — not by vanity metrics.</div>
+            </div>
+          </div>
+          <div class="value">
+            <div class="value-dot"></div>
+            <div>
+              <div class="value-title">Transparent and straightforward</div>
+              <div class="value-desc">No long-term lock-ins, no hidden fees. Just clear pricing and honest communication.</div>
+            </div>
+          </div>
+          <div class="value">
+            <div class="value-dot"></div>
+            <div>
+              <div class="value-title">Built for the long run</div>
+              <div class="value-desc">We build systems that grow with your business — not ones you outgrow in a year.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mission-visual">
+        <div class="mv-stat">
+          <span class="mv-label">Clients served</span>
+          <span class="mv-val">100<em>+</em></span>
+        </div>
+        <div class="mv-stat">
+          <span class="mv-label">Industries</span>
+          <span class="mv-val">20<em>+</em></span>
+        </div>
+        <div class="mv-stat">
+          <span class="mv-label">Average lead increase</span>
+          <span class="mv-val">3<em>×</em></span>
+        </div>
+        <div class="mv-stat">
+          <span class="mv-label">Hours saved per client / week</span>
+          <span class="mv-val">40<em>h</em></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="container">
+    <div class="team-header">
+      <h2>The founders</h2>
+      <p>Two people with one focus — helping your business grow online.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team/henry-white.jpg" alt="Henry White"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="team-photo-placeholder" style="display:none;">
+            <span class="initials">HW</span>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Henry White</div>
+          <div class="team-role">Co-Founder</div>
+          <p class="team-bio">Henry brings deep expertise in digital strategy and website development. He leads client projects from discovery through launch, ensuring every site and system is built to perform.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team/keller-leonard.jpg" alt="Keller Leonard"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="team-photo-placeholder" style="display:none;">
+            <span class="initials">KL</span>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Keller Leonard</div>
+          <div class="team-role">Co-Founder</div>
+          <p class="team-bio">Keller specializes in automation systems and AI integration. He architects the backend workflows that keep clients' businesses running efficiently — from AI phone agents to social media pipelines.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Want to work with us?</h2>
+    <p>Book a free consultation and let's talk about what we can build for your business.</p>
+    <a href="index.html#contact" class="btn btn-primary">Get in Touch →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand-sm">
+      <img src="logo-icon.png" alt="Citadel Digital" />
+      <span>CITADEL <em>DIGITAL</em></span>
+    </a>
+    <ul class="footer-nav">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Citadel Digital</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMobile();
+  });
+</script>
+</body>
+</html>
