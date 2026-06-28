@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hwfl850.github.io/citadel-digital/sitemap.xml
