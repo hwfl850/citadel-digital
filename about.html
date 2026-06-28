@@ -1,5 +1,5 @@
 ---
-title: "About — Citadel Digital"
+title: "About | Citadel Digital"
 description: "Citadel Digital was founded by Henry White and Keller Leonard to help businesses win online through great websites and smart automation."
 ---
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Citadel Digital</title>
+  <title>About | Citadel Digital</title>
   <meta name="description" content="Citadel Digital was founded by Henry White and Keller Leonard to help businesses win online through great websites and smart automation." />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,24 +63,12 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
     .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
     .page-header p { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin: 0 auto; }
 
-    /* MISSION */
-    #mission { padding: 88px 0; border-bottom: 1px solid var(--border); }
-    .mission-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-    .mission-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 20px; }
-    .mission-text { color: var(--muted); font-size: 0.93rem; line-height: 1.8; margin-bottom: 16px; }
-    .mission-values { display: flex; flex-direction: column; gap: 16px; }
-    .value { display: flex; gap: 14px; align-items: flex-start; }
-    .value-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
-    .value-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-    .value-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
-
-    .mission-visual { background: var(--navy-2); border: 1px solid var(--border); border-radius: 20px; padding: 36px; }
-    .mv-stat { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .mv-stat:last-child { border-bottom: none; padding-bottom: 0; }
-    .mv-stat:first-child { padding-top: 0; }
-    .mv-label { font-size: 0.85rem; color: var(--muted); }
-    .mv-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--white); }
-    .mv-val em { font-style: normal; color: var(--blue-light); }
+    /* OUR STORY */
+    #story { padding: 88px 0; border-bottom: 1px solid var(--border); }
+    .story-inner { max-width: 680px; margin: 0 auto; }
+    .story-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 24px; }
+    .story-text { color: var(--muted); font-size: 0.95rem; line-height: 1.85; margin-bottom: 18px; }
+    .story-text:last-child { margin-bottom: 0; }
 
     /* TEAM */
     #team { padding: 88px 0; }
@@ -100,14 +88,6 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
     .team-role { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 14px; }
     .team-bio { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
 
-    /* CTA */
-    .cta-section { padding: 88px 0; text-align: center; background: var(--navy-2); border-top: 1px solid var(--border); }
-    .cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--white); margin-bottom: 14px; }
-    .cta-section p { color: var(--muted); font-size: 1rem; max-width: 400px; margin: 0 auto 28px; }
-    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 13px 26px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
-    .btn-primary { background: var(--blue); color: var(--white); }
-    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
-
     /* FOOTER */
     footer { border-top: 1px solid var(--border); background: var(--navy); padding: 40px 6% 28px; }
     .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
@@ -123,7 +103,6 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
     @media (max-width: 860px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .mission-layout { grid-template-columns: 1fr; gap: 48px; }
       .team-grid { grid-template-columns: 1fr 1fr; max-width: 600px; }
     }
     @media (max-width: 520px) {
@@ -164,55 +143,12 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
   </div>
 </div>
 
-<section id="mission">
+<section id="story">
   <div class="container">
-    <div class="mission-layout">
-      <div>
-        <h2 class="mission-title">We help businesses compete in a digital world</h2>
-        <p class="mission-text">Most small and mid-sized businesses are great at what they do — but they're running their online presence manually, inconsistently, or not at all. Citadel Digital exists to close that gap.</p>
-        <p class="mission-text">We believe every business deserves the same digital tools and automation that large companies use to dominate their market. We build those systems for you — and keep them running.</p>
-        <div class="mission-values" style="margin-top: 28px;">
-          <div class="value">
-            <div class="value-dot"></div>
-            <div>
-              <div class="value-title">Results over activity</div>
-              <div class="value-desc">We measure success by what moves the needle for your business — not by vanity metrics.</div>
-            </div>
-          </div>
-          <div class="value">
-            <div class="value-dot"></div>
-            <div>
-              <div class="value-title">Transparent and straightforward</div>
-              <div class="value-desc">No long-term lock-ins, no hidden fees. Just clear pricing and honest communication.</div>
-            </div>
-          </div>
-          <div class="value">
-            <div class="value-dot"></div>
-            <div>
-              <div class="value-title">Built for the long run</div>
-              <div class="value-desc">We build systems that grow with your business — not ones you outgrow in a year.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mission-visual">
-        <div class="mv-stat">
-          <span class="mv-label">Clients served</span>
-          <span class="mv-val">100<em>+</em></span>
-        </div>
-        <div class="mv-stat">
-          <span class="mv-label">Industries</span>
-          <span class="mv-val">20<em>+</em></span>
-        </div>
-        <div class="mv-stat">
-          <span class="mv-label">Average lead increase</span>
-          <span class="mv-val">3<em>×</em></span>
-        </div>
-        <div class="mv-stat">
-          <span class="mv-label">Hours saved per client / week</span>
-          <span class="mv-val">40<em>h</em></span>
-        </div>
-      </div>
+    <div class="story-inner">
+      <h2 class="story-title">Our Story</h2>
+      <p class="story-text">Citadel Digital started with a simple observation: most small and mid-sized businesses are great at what they do, but they're running their online presence manually, inconsistently, or not at all. We founded the company to close that gap.</p>
+      <p class="story-text">We believe every business deserves the same digital tools and automation that large companies use to dominate their market. So we build those systems, great websites and smart automation, and we keep them running, so our clients can focus on the work they do best.</p>
     </div>
   </div>
 </section>
@@ -221,7 +157,7 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
   <div class="container">
     <div class="team-header">
       <h2>The founders</h2>
-      <p>Two people with one focus — helping your business grow online.</p>
+      <p>Two people with one focus: helping your business grow online.</p>
     </div>
     <div class="team-grid">
 
@@ -251,19 +187,11 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
         <div class="team-info">
           <div class="team-name">Keller Leonard</div>
           <div class="team-role">Co-Founder</div>
-          <p class="team-bio">Keller specializes in automation systems and AI integration. He architects the backend workflows that keep clients' businesses running efficiently — from AI phone agents to social media pipelines.</p>
+          <p class="team-bio">Keller specializes in automation systems and AI integration. He architects the backend workflows that keep clients' businesses running efficiently, from AI phone agents to social media pipelines.</p>
         </div>
       </div>
 
     </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="container">
-    <h2>Want to work with us?</h2>
-    <p>Book a free consultation and let's talk about what we can build for your business.</p>
-    <a href="index.html#contact" class="btn btn-primary">Get in Touch →</a>
   </div>
 </section>
 
