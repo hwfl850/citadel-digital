@@ -1,0 +1,14 @@
+{
+  "name": "citadel-digital",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Citadel Digital marketing site — local preview & UI review tooling",
+  "scripts": {
+    "serve": "node tools/serve.js",
+    "shots": "node tools/screenshot.js",
+    "review": "node tools/screenshot.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}
