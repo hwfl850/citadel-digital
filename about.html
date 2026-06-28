@@ -46,47 +46,25 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
     .container { max-width: 1080px; margin: 0 auto; padding: 0 6%; }
     section { position: relative; z-index: 1; }
 
-    /* PAGE HEADER */
-    .page-header {
-      padding: calc(var(--nav-h) + 72px) 6% 72px;
-      background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 65%), var(--navy);
-      text-align: center; position: relative;
-    }
-    .page-header-grid {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 60% 70% at 50% 20%, black 0%, transparent 75%);
-    }
-    .page-header-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
-    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); border: 1px solid rgba(59,130,246,0.3); border-radius: 100px; padding: 5px 14px; margin-bottom: 20px; }
-    .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
-    .page-header p { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin: 0 auto; }
-
     /* OUR STORY */
-    #story { padding: 88px 0; border-bottom: 1px solid var(--border); }
-    .story-inner { max-width: 680px; margin: 0 auto; }
-    .story-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 24px; }
-    .story-text { color: var(--muted); font-size: 0.95rem; line-height: 1.85; margin-bottom: 18px; }
+    #story { padding: calc(var(--nav-h) + 80px) 0 96px; }
+    .story-layout { display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: start; }
+    .story-content { text-align: left; }
+    .story-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--white); line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .story-text { color: var(--muted); font-size: 0.98rem; line-height: 1.85; margin-bottom: 18px; }
     .story-text:last-child { margin-bottom: 0; }
 
-    /* TEAM */
-    #team { padding: 88px 0; }
-    .team-header { text-align: center; margin-bottom: 60px; }
-    .team-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 12px; }
-    .team-header p { color: var(--muted); font-size: 1rem; max-width: 440px; margin: 0 auto; }
-
-    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 800px; margin: 0 auto; }
-
-    .team-card { background: var(--navy-2); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
-    .team-photo { aspect-ratio: 1; background: var(--navy-3); position: relative; overflow: hidden; }
+    /* FOUNDER CARDS */
+    .story-cards { display: flex; flex-direction: column; gap: 22px; }
+    .team-card { display: flex; gap: 18px; align-items: center; background: var(--navy-2); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+    .team-photo { width: 92px; height: 92px; flex-shrink: 0; border-radius: 14px; background: var(--navy-3); position: relative; overflow: hidden; }
     .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .team-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--navy-3), rgba(37,99,235,0.1)); }
-    .team-photo-placeholder .initials { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 700; color: rgba(59,130,246,0.3); letter-spacing: -0.02em; }
-    .team-info { padding: 28px; }
-    .team-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-    .team-role { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 14px; }
-    .team-bio { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
+    .team-photo-placeholder .initials { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: rgba(59,130,246,0.35); letter-spacing: -0.02em; }
+    .team-info { min-width: 0; }
+    .team-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+    .team-role { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 10px; }
+    .team-bio { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
 
     /* FOOTER */
     footer { border-top: 1px solid var(--border); background: var(--navy); padding: 40px 6% 28px; }
@@ -103,10 +81,12 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
     @media (max-width: 860px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .team-grid { grid-template-columns: 1fr 1fr; max-width: 600px; }
+      .story-layout { grid-template-columns: 1fr; gap: 48px; justify-items: center; }
+      .story-content { text-align: center; max-width: 600px; }
+      .story-cards { width: 100%; max-width: 440px; }
+      .team-card { text-align: left; }
     }
     @media (max-width: 520px) {
-      .team-grid { grid-template-columns: 1fr; max-width: 360px; }
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
   </style>
@@ -134,63 +114,48 @@ description: "Citadel Digital was founded by Henry White and Keller Leonard to h
   <a href="index.html#contact" class="cta" onclick="closeMobile()">Free Consultation</a>
 </div>
 
-<div class="page-header">
-  <div class="page-header-grid"></div>
-  <div class="page-header-content">
-    <div class="eyebrow">About Us</div>
-    <h1>Built by people who've been in your shoes</h1>
-    <p>We started Citadel Digital because we saw how many good businesses were being left behind online. We're here to change that.</p>
-  </div>
-</div>
-
 <section id="story">
   <div class="container">
-    <div class="story-inner">
-      <h2 class="story-title">Our Story</h2>
-      <p class="story-text">Citadel Digital started with a simple observation: most small and mid-sized businesses are great at what they do, but they're running their online presence manually, inconsistently, or not at all. We founded the company to close that gap.</p>
-      <p class="story-text">We believe every business deserves the same digital tools and automation that large companies use to dominate their market. So we build those systems, great websites and smart automation, and we keep them running, so our clients can focus on the work they do best.</p>
-    </div>
-  </div>
-</section>
-
-<section id="team">
-  <div class="container">
-    <div class="team-header">
-      <h2>The founders</h2>
-      <p>Two people with one focus: helping your business grow online.</p>
-    </div>
-    <div class="team-grid">
-
-      <div class="team-card">
-        <div class="team-photo">
-          <img src="images/team/henry-white.jpg" alt="Henry White"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="team-photo-placeholder" style="display:none;">
-            <span class="initials">HW</span>
-          </div>
-        </div>
-        <div class="team-info">
-          <div class="team-name">Henry White</div>
-          <div class="team-role">Co-Founder</div>
-          <p class="team-bio">Henry brings deep expertise in digital strategy and website development. He leads client projects from discovery through launch, ensuring every site and system is built to perform.</p>
-        </div>
+    <div class="story-layout">
+      <div class="story-content">
+        <h1 class="story-title">Our Story</h1>
+        <p class="story-text">Citadel Digital started with a simple observation: most small and mid-sized businesses are great at what they do, but they're running their online presence manually, inconsistently, or not at all. We founded the company to close that gap.</p>
+        <p class="story-text">We believe every business deserves the same digital tools and automation that large companies use to dominate their market. So we build those systems, great websites and smart automation, and we keep them running, so our clients can focus on the work they do best.</p>
       </div>
 
-      <div class="team-card">
-        <div class="team-photo">
-          <img src="images/team/keller-leonard.jpg" alt="Keller Leonard"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="team-photo-placeholder" style="display:none;">
-            <span class="initials">KL</span>
+      <div class="story-cards">
+
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/team/henry-white.jpg" alt="Henry White"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="team-photo-placeholder" style="display:none;">
+              <span class="initials">HW</span>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Henry White</div>
+            <div class="team-role">Co-Founder</div>
+            <p class="team-bio">Henry brings deep expertise in digital strategy and website development. He leads client projects from discovery through launch, ensuring every site and system is built to perform.</p>
           </div>
         </div>
-        <div class="team-info">
-          <div class="team-name">Keller Leonard</div>
-          <div class="team-role">Co-Founder</div>
-          <p class="team-bio">Keller specializes in automation systems and AI integration. He architects the backend workflows that keep clients' businesses running efficiently, from AI phone agents to social media pipelines.</p>
-        </div>
-      </div>
 
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/team/keller-leonard.jpg" alt="Keller Leonard"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="team-photo-placeholder" style="display:none;">
+              <span class="initials">KL</span>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Keller Leonard</div>
+            <div class="team-role">Co-Founder</div>
+            <p class="team-bio">Keller specializes in automation systems and AI integration. He architects the backend workflows that keep clients' businesses running efficiently, from AI phone agents to social media pipelines.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
