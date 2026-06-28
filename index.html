@@ -126,32 +126,80 @@ description: "We build websites and automate your business: social media, AI pho
     .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; color: var(--white); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 14px; }
     .section-sub { color: var(--muted); font-size: 1rem; max-width: 500px; }
 
-    /* SERVICES OVERVIEW (PILLS) */
+    /* SERVICES OVERVIEW (LEDGER) */
     #services {
-      padding: 88px 0 100px;
-      background: linear-gradient(180deg, #0f1d3d 0%, #0c1733 100%);
+      padding: 96px 0 104px;
+      background:
+        radial-gradient(120% 80% at 88% 0%, rgba(59,130,246,0.10) 0%, transparent 55%),
+        linear-gradient(180deg, #0f1d3d 0%, #0c1733 100%);
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     }
-    .services-header { text-align: center; margin-bottom: 48px; }
-    .services-header .section-sub { margin: 0 auto; }
+    .svc-grid {
+      display: grid; grid-template-columns: 0.82fr 1.18fr;
+      gap: 72px; align-items: start;
+    }
+    .svc-intro { position: sticky; top: 112px; align-self: start; }
+    .svc-intro .section-title { margin-bottom: 16px; }
+    .svc-intro .section-sub { max-width: 360px; }
+    .svc-all {
+      display: inline-flex; align-items: center; gap: 9px;
+      margin-top: 30px; padding-top: 26px;
+      border-top: 1px solid var(--border);
+      color: var(--blue-light); text-decoration: none;
+      font-weight: 600; font-size: 0.88rem; letter-spacing: 0.01em;
+    }
+    .svc-all span { transition: transform 0.28s ease; }
+    .svc-all:hover span { transform: translateX(5px); }
 
-    .service-pills {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 14px; max-width: 720px; margin: 0 auto;
-    }
-    .service-pill {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--navy-2); border: 1px solid var(--border);
-      border-radius: 100px; padding: 13px 24px; min-height: 48px;
+    .svc-list { display: flex; flex-direction: column; }
+    .svc-row {
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 52px 46px 1fr 26px;
+      align-items: center; gap: 22px;
+      padding: 26px 18px 26px 26px;
       text-decoration: none; color: var(--text);
-      font-weight: 600; font-size: 0.92rem; white-space: nowrap;
-      transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.2s;
+      border-top: 1px solid var(--border);
+      transition: background 0.4s ease;
     }
-    .service-pill:hover, .service-pill:focus-visible {
-      border-color: rgba(59,130,246,0.45); background: var(--blue-muted);
-      color: var(--white); transform: translateY(-2px); outline: none;
+    .svc-row:last-child { border-bottom: 1px solid var(--border); }
+    .svc-row::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--blue-light);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
     }
-    .service-pill .pill-icon { font-size: 1.1rem; line-height: 1; }
+    .svc-row:hover { background: rgba(59,130,246,0.07); }
+    .svc-row:hover::before, .svc-row:focus-visible::before { transform: scaleY(1); }
+    .svc-row:focus-visible { outline: none; background: rgba(59,130,246,0.07); }
+
+    .svc-index {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem; font-weight: 700; line-height: 1;
+      color: var(--blue-light); opacity: 0.45;
+      font-variant-numeric: tabular-nums;
+      transition: opacity 0.3s ease;
+    }
+    .svc-row:hover .svc-index { opacity: 1; }
+    .svc-icon {
+      width: 46px; height: 46px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(11,17,32,0.6); border: 1px solid var(--border);
+      font-size: 1.15rem; line-height: 1;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .svc-row:hover .svc-icon { border-color: rgba(59,130,246,0.5); background: var(--blue-muted); }
+    .svc-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.12rem; font-weight: 600; color: var(--white);
+      letter-spacing: -0.01em; margin-bottom: 5px;
+    }
+    .svc-text { color: var(--muted); font-size: 0.9rem; line-height: 1.55; max-width: 46ch; }
+    .svc-arrow {
+      font-size: 1.15rem; color: var(--muted);
+      justify-self: end;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .svc-row:hover .svc-arrow { color: var(--blue-light); transform: translateX(5px); }
 
     /* CTA BAND */
     .cta-band {
@@ -216,6 +264,9 @@ description: "We build websites and automate your business: social media, AI pho
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+      .svc-grid { grid-template-columns: 1fr; gap: 40px; }
+      .svc-intro { position: static; }
+      .svc-intro .section-sub { max-width: none; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
     }
@@ -225,8 +276,8 @@ description: "We build websites and automate your business: social media, AI pho
       .contact-form { padding: 28px 20px; }
       .hero-actions { flex-direction: column; align-items: center; }
       .hero-actions .btn { width: 100%; justify-content: center; }
-      .service-pills { gap: 12px; }
-      .service-pill { width: 100%; justify-content: center; white-space: normal; }
+      .svc-row { grid-template-columns: 38px 1fr 22px; gap: 16px; padding: 22px 8px 22px 18px; }
+      .svc-icon { display: none; }
     }
   </style>
 </head>
@@ -268,17 +319,50 @@ description: "We build websites and automate your business: social media, AI pho
 </section>
 
 <section id="services">
-  <div class="container">
-    <div class="services-header">
+  <div class="container svc-grid">
+    <div class="svc-intro">
       <span class="section-eyebrow">What We Do</span>
       <h2 class="section-title">Four ways we grow your business</h2>
       <p class="section-sub">From your website to your daily operations, we build it and we run it.</p>
+      <a href="services.html" class="svc-all">Explore all services <span>→</span></a>
     </div>
-    <div class="service-pills">
-      <a href="services.html#web" class="service-pill"><span class="pill-icon">🌐</span>Website Design</a>
-      <a href="services.html#social" class="service-pill"><span class="pill-icon">📲</span>Social Media Automation</a>
-      <a href="services.html#phone" class="service-pill"><span class="pill-icon">📞</span>AI Phone Systems</a>
-      <a href="services.html#scheduling" class="service-pill"><span class="pill-icon">📅</span>Smart Scheduling</a>
+    <div class="svc-list">
+      <a href="services.html#web" class="svc-row">
+        <span class="svc-index">01</span>
+        <span class="svc-icon">🌐</span>
+        <div class="svc-body">
+          <div class="svc-name">Website Design</div>
+          <p class="svc-text">Custom-built, fast, search-optimized sites designed to turn visitors into customers.</p>
+        </div>
+        <span class="svc-arrow">→</span>
+      </a>
+      <a href="services.html#social" class="svc-row">
+        <span class="svc-index">02</span>
+        <span class="svc-icon">📲</span>
+        <div class="svc-body">
+          <div class="svc-name">Social Media Automation</div>
+          <p class="svc-text">We plan, create, and post your content across every platform — keeping your voice consistent without the daily effort.</p>
+        </div>
+        <span class="svc-arrow">→</span>
+      </a>
+      <a href="services.html#phone" class="svc-row">
+        <span class="svc-index">03</span>
+        <span class="svc-icon">📞</span>
+        <div class="svc-body">
+          <div class="svc-name">AI Phone Systems</div>
+          <p class="svc-text">Voice agents that answer calls, qualify leads, and book appointments around the clock.</p>
+        </div>
+        <span class="svc-arrow">→</span>
+      </a>
+      <a href="services.html#scheduling" class="svc-row">
+        <span class="svc-index">04</span>
+        <span class="svc-icon">📅</span>
+        <div class="svc-body">
+          <div class="svc-name">Smart Scheduling</div>
+          <p class="svc-text">Let customers book themselves, with automatic reminders and follow-ups that cut down on no-shows.</p>
+        </div>
+        <span class="svc-arrow">→</span>
+      </a>
     </div>
   </div>
 </section>
@@ -405,8 +489,10 @@ description: "We build websites and automate your business: social media, AI pho
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; io.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.service-pill').forEach(el => {
-    el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity 0.45s ease, transform 0.45s ease';
+  document.querySelectorAll('.svc-row').forEach((el, i) => {
+    el.style.opacity='0'; el.style.transform='translateY(22px)';
+    el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+    el.style.transitionDelay=(i*0.09)+'s';
     io.observe(el);
   });
 
