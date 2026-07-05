@@ -11,134 +11,107 @@ description: "Website design, social media automation, AI phone systems, and sma
   <meta name="description" content="Website design, social media automation, AI phone systems, and smart scheduling." />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ink: #0b0e16;
-      --ink-2: #10141f;
-      --ink-3: #151a28;
-      --line: rgba(255,255,255,0.07);
-      --line-strong: rgba(255,255,255,0.14);
-      --text: #e8ebf2;
-      --muted: #98a0b3;
-      --faint: #6b7386;
-      --accent: #4d7fff;
-      --accent-soft: rgba(77,127,255,0.12);
-      --white: #ffffff;
-      --nav-h: 64px;
-      --serif: 'Instrument Serif', serif;
-      --mono: 'Geist Mono', monospace;
+      --navy: #0b1120; --navy-2: #111827; --navy-3: #1a2540;
+      --blue: #2563eb; --blue-light: #3b82f6; --blue-muted: rgba(37,99,235,0.15);
+      --border: rgba(255,255,255,0.08); --text: #e2e8f0; --muted: #94a3b8; --white: #ffffff; --nav-h: 68px;
     }
-
     html { scroll-behavior: smooth; }
-    body { font-family: 'Geist', sans-serif; background: var(--ink); color: var(--text); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--text); overflow-x: hidden; line-height: 1.6; }
 
     nav {
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between; padding: 0 6%;
-      z-index: 100; background: rgba(11,14,22,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line);
+      z-index: 100; background: rgba(11,17,32,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
     }
-    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-brand img { height: 30px; }
-    .nav-brand span { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.09em; color: var(--white); }
-    .nav-brand span em { font-style: normal; color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .nav-brand img { height: 34px; }
+    .nav-brand span { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.06em; color: var(--white); }
+    .nav-brand span em { font-style: normal; color: var(--blue-light); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-links .cta { background: var(--accent); color: var(--white) !important; padding: 8px 18px; border-radius: 7px; font-weight: 500 !important; transition: filter 0.2s !important; }
-    .nav-links .cta:hover { filter: brightness(1.12); }
+    .nav-links .cta { background: var(--blue); color: var(--white) !important; padding: 8px 20px; border-radius: 7px; font-weight: 600 !important; }
+    .nav-links .cta:hover { background: var(--blue-light) !important; }
     .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
-    .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--white); border-radius: 2px; }
-    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,14,22,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); padding: 18px 6%; flex-direction: column; gap: 12px; z-index: 99; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,17,32,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 20px 6%; flex-direction: column; gap: 14px; z-index: 99; }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.92rem; padding: 6px 0; border-bottom: 1px solid var(--line); }
-    .mobile-menu a.cta { background: var(--accent); border: none; border-radius: 7px; padding: 11px 16px; text-align: center; color: var(--white); margin-top: 4px; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu a.cta { background: var(--blue); border: none; border-radius: 7px; padding: 11px 16px; text-align: center; color: var(--white); margin-top: 4px; }
 
-    .container { max-width: 840px; margin: 0 auto; padding: 0 6%; }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 6%; }
     section { position: relative; z-index: 1; }
 
     /* PAGE HEADER */
     .page-header {
-      padding: calc(var(--nav-h) + 72px) 6% 52px;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(77,127,255,0.09) 0%, transparent 65%), var(--ink);
+      padding: calc(var(--nav-h) + 80px) 6% 56px;
+      background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 65%), var(--navy);
       text-align: center; position: relative;
     }
     .page-header-grid {
       position: absolute; inset: 0;
-      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(ellipse 55% 70% at 50% 15%, black 0%, transparent 75%);
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 60% 70% at 50% 20%, black 0%, transparent 75%);
     }
-    .page-header-content { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 9px;
-      font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
-      margin-bottom: 20px;
-    }
-    .eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--accent); flex-shrink: 0; }
-    .page-header h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 600; color: var(--white); line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 14px; }
-    .page-header h1 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--accent); }
-    .page-header p { color: var(--muted); font-size: 0.98rem; }
+    .page-header-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); border: 1px solid rgba(59,130,246,0.3); border-radius: 100px; padding: 5px 14px; margin-bottom: 20px; }
+    .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .page-header p { color: var(--muted); font-size: 1.05rem; }
 
     /* SERVICE LIST */
-    .services { padding: 8px 0; }
+    .services { padding: 16px 0; }
     .service {
-      display: grid; grid-template-columns: 72px 1fr; gap: 26px; align-items: start;
-      padding: 40px 0; border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: 80px 1fr; gap: 28px; align-items: start;
+      padding: 44px 0; border-top: 1px solid var(--border);
     }
     .service:first-child { border-top: none; }
 
-    .service-mark { display: flex; flex-direction: column; gap: 12px; }
-    .service-index { font-family: var(--mono); font-size: 0.8rem; font-weight: 500; color: var(--accent); line-height: 1; }
-    .service-icon {
-      width: 40px; height: 40px; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--ink-2); border: 1px solid var(--line); color: var(--muted);
-    }
-    .service-icon svg { width: 18px; height: 18px; }
+    .service-mark { display: flex; flex-direction: column; gap: 8px; }
+    .service-index { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--blue-light); line-height: 1; }
+    .service-icon { font-size: 1.5rem; }
 
-    .service-name { font-size: clamp(1.2rem, 2.6vw, 1.45rem); font-weight: 600; color: var(--white); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 10px; }
-    .service-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.7; max-width: 540px; margin-bottom: 18px; }
+    .service-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.3rem, 3vw, 1.6rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+    .service-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 560px; margin-bottom: 20px; }
 
-    .service-points { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+    .service-points { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 10px; }
     .service-points li {
-      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.02em; color: var(--muted);
-      border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px;
-      background: var(--ink-2);
+      font-size: 0.8rem; color: var(--text); background: rgba(37,99,235,0.06);
+      border: 1px solid var(--border); border-radius: 100px; padding: 6px 14px;
     }
 
     /* CTA */
-    .cta-section { padding: 64px 0 88px; text-align: center; border-top: 1px solid var(--line); margin-top: 8px; }
-    .cta-section h2 { font-size: clamp(1.4rem, 2.8vw, 1.8rem); font-weight: 600; letter-spacing: -0.02em; color: var(--white); margin-bottom: 10px; }
-    .cta-section h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--accent); }
-    .cta-section p { color: var(--muted); font-size: 0.95rem; max-width: 420px; margin: 0 auto 26px; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 8px; font-weight: 500; font-size: 0.875rem; text-decoration: none; transition: all 0.2s; }
-    .btn-primary { background: var(--accent); color: var(--white); }
-    .btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .cta-section { padding: 72px 0 96px; text-align: center; }
+    .cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .cta-section p { color: var(--muted); font-size: 1rem; max-width: 420px; margin: 0 auto 28px; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 13px 26px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
 
     /* FOOTER */
-    footer { border-top: 1px solid var(--line); background: var(--ink); padding: 36px 6% 26px; }
-    .footer-inner { max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer { border-top: 1px solid var(--border); background: var(--navy); padding: 40px 6% 28px; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-brand-sm { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .footer-brand-sm img { height: 26px; }
-    .footer-brand-sm span { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; color: var(--white); }
-    .footer-brand-sm span em { font-style: normal; color: var(--accent); }
-    .footer-nav { display: flex; gap: 22px; list-style: none; }
-    .footer-nav a { color: var(--muted); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
-    .footer-nav a:hover { color: var(--white); }
-    .footer-copy { font-family: var(--mono); font-size: 0.7rem; color: var(--faint); }
+    .footer-brand-sm img { height: 28px; }
+    .footer-brand-sm span { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: var(--white); }
+    .footer-brand-sm span em { font-style: normal; color: var(--blue-light); }
+    .footer-nav { display: flex; gap: 24px; list-style: none; }
+    .footer-nav a { color: var(--muted); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--blue-light); }
+    .footer-copy { font-size: 0.8rem; color: var(--muted); }
 
     @media (max-width: 860px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
     }
     @media (max-width: 560px) {
-      .service { grid-template-columns: 1fr; gap: 14px; padding: 32px 0; }
-      .service-mark { flex-direction: row; align-items: center; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 18px; }
+      .service { grid-template-columns: 1fr; gap: 14px; padding: 36px 0; }
+      .service-mark { flex-direction: row; align-items: center; gap: 12px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
   </style>
 </head>
@@ -168,8 +141,8 @@ description: "Website design, social media automation, AI phone systems, and sma
 <div class="page-header">
   <div class="page-header-grid"></div>
   <div class="page-header-content">
-    <p class="eyebrow">Our Services</p>
-    <h1>Everything you need to <em>grow</em> online</h1>
+    <div class="eyebrow">Our Services</div>
+    <h1>Everything you need to grow online</h1>
     <p>Four focused services that work individually, or together as a complete digital operation.</p>
   </div>
 </div>
@@ -180,9 +153,7 @@ description: "Website design, social media automation, AI phone systems, and sma
     <article class="service" id="web">
       <div class="service-mark">
         <span class="service-index">01</span>
-        <span class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.4 3.9 5.6 3.9 9s-1.4 6.6-3.9 9c-2.5-2.4-3.9-5.6-3.9-9s1.4-6.6 3.9-9z"/></svg>
-        </span>
+        <span class="service-icon">🌐</span>
       </div>
       <div>
         <h2 class="service-name">Website Design</h2>
@@ -198,9 +169,7 @@ description: "Website design, social media automation, AI phone systems, and sma
     <article class="service" id="social">
       <div class="service-mark">
         <span class="service-index">02</span>
-        <span class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8l6.8-4M8.4 13.2l6.8 4"/></svg>
-        </span>
+        <span class="service-icon">📲</span>
       </div>
       <div>
         <h2 class="service-name">Social Media Automation</h2>
@@ -216,9 +185,7 @@ description: "Website design, social media automation, AI phone systems, and sma
     <article class="service" id="phone">
       <div class="service-mark">
         <span class="service-index">03</span>
-        <span class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 4h4l1.8 4.5-2.3 1.7a12.5 12.5 0 0 0 5.8 5.8l1.7-2.3L20 15.5v4a1.5 1.5 0 0 1-1.6 1.5C10 20.4 3.6 14 3 5.6A1.5 1.5 0 0 1 4.5 4z"/></svg>
-        </span>
+        <span class="service-icon">📞</span>
       </div>
       <div>
         <h2 class="service-name">AI Phone Systems</h2>
@@ -234,9 +201,7 @@ description: "Website design, social media automation, AI phone systems, and sma
     <article class="service" id="scheduling">
       <div class="service-mark">
         <span class="service-index">04</span>
-        <span class="service-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 2.8V7M16 2.8V7"/></svg>
-        </span>
+        <span class="service-icon">📅</span>
       </div>
       <div>
         <h2 class="service-name">Smart Scheduling</h2>
@@ -254,7 +219,7 @@ description: "Website design, social media automation, AI phone systems, and sma
 
 <section class="cta-section">
   <div class="container">
-    <h2>Not sure where to <em>start?</em></h2>
+    <h2>Not sure where to start?</h2>
     <p>Book a free consultation and we'll recommend the right services for your business.</p>
     <a href="index.html#contact" class="btn btn-primary">Book a Free Consultation →</a>
   </div>
@@ -271,7 +236,7 @@ description: "Website design, social media automation, AI phone systems, and sma
       <li><a href="about.html">About</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <p class="footer-copy">© 2026 Citadel Digital</p>
+    <p class="footer-copy">© 2025 Citadel Digital</p>
   </div>
 </footer>
 
