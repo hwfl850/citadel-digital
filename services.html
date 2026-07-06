@@ -15,33 +15,34 @@ description: "Website design, social media automation, AI phone systems, and sma
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #0b1120; --navy-2: #111827; --navy-3: #1a2540;
-      --blue: #2563eb; --blue-light: #3b82f6; --blue-muted: rgba(37,99,235,0.15);
-      --border: rgba(255,255,255,0.08); --text: #e2e8f0; --muted: #94a3b8; --white: #ffffff; --nav-h: 68px;
+      --navy: #101d3a; --navy-2: #182a52; --blue: #0b5cc7; --sky: #47bdff; --sky-bright: #79d2ff;
+      --navy-muted: rgba(16,29,58,0.08); --bg: #ffffff; --bg-2: #f4f6fa;
+      --border: rgba(16,29,58,0.14); --border-light: rgba(255,255,255,0.12);
+      --text: #26324e; --muted: #5b6780; --light: #c9d6ee; --light-muted: #92a5c9; --white: #ffffff; --nav-h: 68px;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; }
 
     nav {
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between; padding: 0 6%;
-      z-index: 100; background: rgba(11,17,32,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+      z-index: 100; background: rgba(16,29,58,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light);
     }
     .nav-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .nav-brand img { height: 34px; }
     .nav-brand span { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.06em; color: var(--white); }
-    .nav-brand span em { font-style: normal; color: var(--blue-light); }
+    .nav-brand span em { font-style: normal; color: var(--sky); }
     .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a { color: var(--light-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-links .cta { background: var(--blue); color: var(--white) !important; padding: 8px 20px; border-radius: 7px; font-weight: 600 !important; }
-    .nav-links .cta:hover { background: var(--blue-light) !important; }
+    .nav-links .cta { background: var(--sky); color: var(--navy) !important; padding: 8px 20px; border-radius: 7px; font-weight: 600 !important; }
+    .nav-links .cta:hover { background: var(--sky-bright) !important; }
     .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
-    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,17,32,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 20px 6%; flex-direction: column; gap: 14px; z-index: 99; }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(16,29,58,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); padding: 20px 6%; flex-direction: column; gap: 14px; z-index: 99; }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 6px 0; border-bottom: 1px solid var(--border); }
-    .mobile-menu a.cta { background: var(--blue); border: none; border-radius: 7px; padding: 11px 16px; text-align: center; color: var(--white); margin-top: 4px; }
+    .mobile-menu a { color: var(--light); text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 6px 0; border-bottom: 1px solid var(--border-light); }
+    .mobile-menu a.cta { background: var(--sky); border: none; border-radius: 7px; padding: 11px 16px; text-align: center; color: var(--navy); margin-top: 4px; }
 
     .container { max-width: 880px; margin: 0 auto; padding: 0 6%; }
     section { position: relative; z-index: 1; }
@@ -49,7 +50,7 @@ description: "Website design, social media automation, AI phone systems, and sma
     /* PAGE HEADER */
     .page-header {
       padding: calc(var(--nav-h) + 80px) 6% 56px;
-      background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 65%), var(--navy);
+      background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(71,189,255,0.12) 0%, transparent 65%), var(--bg);
       text-align: center; position: relative;
     }
     .page-header-grid {
@@ -59,8 +60,8 @@ description: "Website design, social media automation, AI phone systems, and sma
       mask-image: radial-gradient(ellipse 60% 70% at 50% 20%, black 0%, transparent 75%);
     }
     .page-header-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
-    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); border: 1px solid rgba(59,130,246,0.3); border-radius: 100px; padding: 5px 14px; margin-bottom: 20px; }
-    .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); border: 1px solid rgba(71,189,255,0.55); border-radius: 100px; padding: 5px 14px; margin-bottom: 20px; }
+    .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--navy); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
     .page-header p { color: var(--muted); font-size: 1.05rem; }
 
     /* SERVICE LIST */
@@ -72,37 +73,43 @@ description: "Website design, social media automation, AI phone systems, and sma
     .service:first-child { border-top: none; }
 
     .service-mark { display: flex; flex-direction: column; gap: 8px; }
-    .service-index { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--blue-light); line-height: 1; }
+    .service-index { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--blue); line-height: 1; }
     .service-icon { font-size: 1.5rem; }
 
-    .service-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.3rem, 3vw, 1.6rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+    .service-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.3rem, 3vw, 1.6rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
     .service-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 560px; margin-bottom: 20px; }
 
     .service-points { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 10px; }
     .service-points li {
-      font-size: 0.8rem; color: var(--text); background: rgba(37,99,235,0.06);
-      border: 1px solid var(--border); border-radius: 100px; padding: 6px 14px;
+      font-size: 0.8rem; color: var(--text); background: rgba(71,189,255,0.08);
+      border: 1px solid rgba(71,189,255,0.35); border-radius: 100px; padding: 6px 14px;
     }
 
     /* CTA */
-    .cta-section { padding: 72px 0 96px; text-align: center; }
+    .cta-section {
+      padding: 80px 0 88px; text-align: center; margin-top: 32px;
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 100%, rgba(71,189,255,0.12) 0%, transparent 65%),
+        linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%);
+      border-top: 1px solid var(--border);
+    }
     .cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--white); margin-bottom: 12px; }
-    .cta-section p { color: var(--muted); font-size: 1rem; max-width: 420px; margin: 0 auto 28px; }
+    .cta-section p { color: var(--light-muted); font-size: 1rem; max-width: 420px; margin: 0 auto 28px; }
     .btn { display: inline-flex; align-items: center; gap: 7px; padding: 13px 26px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
-    .btn-primary { background: var(--blue); color: var(--white); }
-    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+    .btn-primary { background: var(--sky); color: var(--navy); }
+    .btn-primary:hover { background: var(--sky-bright); transform: translateY(-1px); }
 
     /* FOOTER */
-    footer { border-top: 1px solid var(--border); background: var(--navy); padding: 40px 6% 28px; }
+    footer { border-top: 1px solid var(--border-light); background: var(--navy); padding: 40px 6% 28px; }
     .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-brand-sm { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .footer-brand-sm img { height: 28px; }
     .footer-brand-sm span { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: var(--white); }
-    .footer-brand-sm span em { font-style: normal; color: var(--blue-light); }
+    .footer-brand-sm span em { font-style: normal; color: var(--sky); }
     .footer-nav { display: flex; gap: 24px; list-style: none; }
-    .footer-nav a { color: var(--muted); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
-    .footer-nav a:hover { color: var(--blue-light); }
-    .footer-copy { font-size: 0.8rem; color: var(--muted); }
+    .footer-nav a { color: var(--light-muted); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--sky); }
+    .footer-copy { font-size: 0.8rem; color: var(--light-muted); }
 
     @media (max-width: 860px) {
       .nav-links { display: none; }
@@ -240,7 +247,11 @@ description: "Website design, social media automation, AI phone systems, and sma
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script>
+  gsap.registerPlugin(ScrollTrigger);
+
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
   hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
