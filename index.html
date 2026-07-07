@@ -57,7 +57,7 @@ description: "We build websites and automate your business: social media, AI pho
 
     .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
     .nav-links a { color: var(--light-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-links .cta { background: var(--sky); color: var(--navy) !important; padding: 8px 20px; border-radius: 7px; font-weight: 600 !important; transition: background 0.2s !important; }
     .nav-links .cta:hover { background: var(--sky-bright) !important; }
 
@@ -368,7 +368,7 @@ description: "We build websites and automate your business: social media, AI pho
     /* FOOTER */
     footer { border-top: 1px solid var(--border-light); background: var(--navy); padding: 52px 6% 32px; }
     .footer-inner { max-width: 1080px; margin: 0 auto; }
-    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; margin-bottom: 40px; }
     .footer-brand img { height: 36px; margin-bottom: 14px; }
     .footer-brand p { font-size: 0.84rem; color: var(--light-muted); line-height: 1.7; max-width: 260px; }
     .footer-col h5 { font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--white); letter-spacing: 0.04em; margin-bottom: 14px; }
@@ -417,6 +417,7 @@ description: "We build websites and automate your business: social media, AI pho
     <span>CITADEL <em>DIGITAL</em></span>
   </a>
   <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="#contact" class="cta">Free Consultation</a></li>
@@ -427,6 +428,7 @@ description: "We build websites and automate your business: social media, AI pho
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
   <a href="services.html" onclick="closeMobile()">Services</a>
   <a href="about.html" onclick="closeMobile()">About</a>
   <a href="#contact" class="cta" onclick="closeMobile()">Free Consultation</a>
@@ -587,16 +589,9 @@ description: "We build websites and automate your business: social media, AI pho
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-        </ul>
-      </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Citadel Digital. All rights reserved.</p>
+      <p class="footer-copy">© <span id="footer-year">2026</span> Citadel Digital. All rights reserved.</p>
       <div class="footer-socials">
         <a href="#" class="social-link" aria-label="Facebook">f</a>
         <a href="#" class="social-link" aria-label="Instagram">ig</a>
@@ -610,6 +605,8 @@ description: "We build websites and automate your business: social media, AI pho
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script>
   gsap.registerPlugin(ScrollTrigger);
+
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
 
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -700,10 +697,9 @@ description: "We build websites and automate your business: social media, AI pho
     function tick() {
       n++;
       el.innerHTML = render(n);
-      if (n >= CHARS.length) { setTimeout(reset, 2200); return; }
+      if (n >= CHARS.length) return;
       setTimeout(tick, 34 + Math.random() * 46);
     }
-    function reset() { n = 0; el.innerHTML = ''; setTimeout(tick, 450); }
     setTimeout(tick, 600);
   })();
 </script>
