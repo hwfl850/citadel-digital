@@ -567,6 +567,7 @@ description: "We build websites and automate your business: social media, AI pho
           </div>
           <button type="submit" class="btn-submit">Send Request</button>
           <div id="form-success">✓ &nbsp;Message sent! We'll be in touch within 24 hours.</div>
+          <div id="form-error" style="display:none;margin-top:12px;padding:14px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:8px;color:#f87171;font-size:0.85rem;"></div>
           <p class="form-note">No spam. Your information stays private.</p>
         </form>
       </div>
@@ -638,14 +639,56 @@ description: "We build websites and automate your business: social media, AI pho
     io.observe(el);
   });
 
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
+  /* ── Contact form → Cloudflare Worker ── */
+  const WORKER_URL = 'REPLACE_WITH_YOUR_WORKER_URL'; // e.g. https://citadel-contact.yourname.workers.dev
+
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = this.querySelector('.btn-submit');
-    btn.textContent = 'Sending...'; btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('form-success').style.display = 'block';
-      this.reset(); btn.textContent = 'Send Request'; btn.disabled = false;
-    }, 900);
+    const successEl = document.getElementById('form-success');
+    const errorEl = document.getElementById('form-error');
+
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    successEl.style.display = 'none';
+    if (errorEl) errorEl.style.display = 'none';
+
+    const payload = {
+      firstName: document.getElementById('fname').value.trim(),
+      lastName:  document.getElementById('lname').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      phone:     document.getElementById('phone').value.trim(),
+      service:   document.getElementById('service').value,
+      message:   document.getElementById('message').value.trim(),
+    };
+
+    // Graceful fallback if Worker URL hasn't been configured yet
+    if (!WORKER_URL || WORKER_URL.startsWith('REPLACE_')) {
+      console.warn('Worker URL not configured — simulating success.');
+      setTimeout(() => { successEl.style.display = 'block'; this.reset(); btn.textContent = 'Send Request'; btn.disabled = false; }, 700);
+      return;
+    }
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error ?? `Server error ${res.status}`);
+      }
+
+      successEl.style.display = 'block';
+      this.reset();
+    } catch (err) {
+      console.error('Form error:', err);
+      if (errorEl) { errorEl.textContent = err.message || 'Something went wrong. Please try again.'; errorEl.style.display = 'block'; }
+      else alert('Something went wrong. Please email us directly at hello@citadeldigital.com');
+    } finally {
+      btn.textContent = 'Send Request'; btn.disabled = false;
+    }
   });
 
   /* Hero laptop code-typing animation */
