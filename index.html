@@ -123,22 +123,76 @@ description: "We build websites and automate your business: social media, AI pho
       content: ""; position: absolute; inset: -10% -6%;
       background: radial-gradient(55% 55% at 50% 45%, rgba(71,189,255,0.16) 0%, transparent 70%);
       filter: blur(6px); pointer-events: none;
+      opacity: var(--glow, 1);
     }
 
-    /* Pure-CSS laptop */
-    .laptop {
+    /* Pure-CSS laptop: two planes sharing one hinge line (the top edge of
+       .laptop-base). The base is a static keyboard deck in the foreground;
+       .laptop-lid is an independent plane that folds down toward the viewer
+       about the hinge inside the .laptop 3D scene. */
+    .laptop-float {
       position: relative; z-index: 1;
       width: min(560px, 100%); margin: 0 auto;
       filter: drop-shadow(0 38px 45px rgba(16,29,58,0.28));
       animation: float 6.5s 0.8s ease-in-out infinite;
     }
+    .laptop {
+      /* 3D scene only — filter/animation stay on .laptop-float because either
+         one would force transform-style back to flat here */
+      position: relative;
+      perspective: 2000px;
+      transform-style: preserve-3d;
+      perspective-origin: 50% 30%; /* viewer's eye slightly above the screen, looking down onto the deck in the foreground */
+      padding-bottom: 13%; /* room for the deck plane projecting toward the viewer below the hinge */
+    }
+    /* The lid is a true 3D slab, not a single plane: a front face (.screen),
+       a .back-cover pushed back in Z, and a .top-edge bridging the two. The
+       bridge face is perpendicular to the screen, so its thickness never
+       foreshortens to 0 the way a border-top would when the lid rotates flat. */
     .laptop-lid {
       position: relative;
+      --lid-thick: 6px; /* slab thickness — the visible edge once the lid shuts */
+      transform-origin: 50% 100%; will-change: transform; /* hinge = bottom center */
+      transform-style: preserve-3d; /* holds the three faces in real 3D space */
       padding: 15px 12px 17px; border-radius: 20px 20px 0 0;
+      /* front face = the dark shell/bezel framing the screen (sits at Z 0) */
       background: linear-gradient(180deg, #4d5a76 0%, #303d5c 7%, #1b2745 55%, #131e3a 100%);
-      border: 1px solid rgba(255,255,255,0.16); border-bottom: none;
+      border: 1px solid rgba(255,255,255,0.16);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -8px 14px rgba(0,0,0,0.28);
     }
+    .laptop-lid .back-cover {
+      /* outer aluminum shell, one slab-thickness behind the front face; this is
+         the surface that faces up at the viewer once the lid is shut. It runs a
+         few px PROUD of the dark front face on every side so that once closed —
+         when the front face sits nearer the eye and would otherwise project past
+         the shell — the aluminum still fully encloses it (no dark corner slivers). */
+      position: absolute; inset: -3px;
+      transform: translateZ(calc(-1 * var(--lid-thick, 6px)));
+      background: linear-gradient(180deg, #dde5f2 0%, #c3cee2 46%, #a9b7d1 100%);
+      border-radius: 22px 22px 3px 3px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.45),
+        inset 0 3px 8px rgba(255,255,255,0.5),
+        inset 0 -10px 16px rgba(16,29,58,0.16);
+    }
+    .laptop-lid .thickness-layer {
+      /* Z-stack ("deck of cards"): identical rounded slabs, each pushed 1px
+         further back in Z. Together they form solid thickness that follows the
+         lid's corner radius exactly — a single bridging plane (a border or a
+         rotated strip) can only span the straight edges and leaves the curved
+         corners hollow. Same footprint + radius as .back-cover so the stacked
+         edge reads as one continuous piece of milled aluminum. */
+      position: absolute; inset: -3px;
+      border-radius: 22px 22px 3px 3px;
+      background: linear-gradient(180deg, #dde5f2 0%, #c3cee2 46%, #a9b7d1 100%);
+    }
+    /* .screen is the lid's first element child; the five stacked layers are
+       children 2–6, and .back-cover (Z -6px) caps the stack. */
+    .laptop-lid .thickness-layer:nth-child(2) { transform: translateZ(-1px); }
+    .laptop-lid .thickness-layer:nth-child(3) { transform: translateZ(-2px); }
+    .laptop-lid .thickness-layer:nth-child(4) { transform: translateZ(-3px); }
+    .laptop-lid .thickness-layer:nth-child(5) { transform: translateZ(-4px); }
+    .laptop-lid .thickness-layer:nth-child(6) { transform: translateZ(-5px); }
     .laptop-lid::before {
       /* webcam */
       content: ""; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
@@ -148,10 +202,14 @@ description: "We build websites and automate your business: social media, AI pho
     }
     .screen {
       position: relative;
+      /* inner face only: culled once the lid folds past the eye line, so the
+         casing (the lid's own shell gradient) shows instead of mirrored content */
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
       aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden;
       display: flex; flex-direction: column; text-align: left;
       background: radial-gradient(130% 120% at 50% -10%, #17274c 0%, #0a132b 70%);
-      box-shadow: 0 0 0 2px #05090f, inset 0 0 24px rgba(0,0,0,0.4);
+      /* bezel sits inset from the outer aluminum shell */
+      box-shadow: 0 0 0 2px #05090f, inset 0 2px 3px rgba(255,255,255,0.4), inset 0 -2px 3px rgba(0,0,0,0.3), inset 0 0 24px rgba(0,0,0,0.4);
     }
     .screen::before {
       /* glass glare */
@@ -193,9 +251,47 @@ description: "We build websites and automate your business: social media, AI pho
       background: var(--sky); vertical-align: -0.16em; border-radius: 1px;
       animation: blink 1.05s steps(1) infinite;
     }
-    .deck {
-      position: relative;
-      height: 17px; width: 114%; margin: 0 0 0 -7%;
+    .laptop-base {
+      /* static base plane group. Sits in flow right after the lid, so its top
+         edge IS the hinge line. Never transformed; the lid closes down onto it. */
+      position: relative; height: 0;
+      transform-style: preserve-3d;
+      --base-depth: 363px; /* synced to the lid's exact height from JS */
+    }
+    .deck-top {
+      /* keyboard deck: a horizontal plane extending from the hinge toward the
+         viewer (1px below the hinge so the closed lid rests unambiguously on top) */
+      position: absolute; top: 1px; left: 0; right: 0;
+      height: var(--base-depth);
+      transform-origin: 50% 0;
+      transform: rotateX(90deg);
+      background: linear-gradient(180deg, #a9b7d1 0%, #dde5f2 10%, #cdd8ea 55%, #bccae2 100%);
+      border-radius: 2px 2px 18px 18px;
+      box-shadow:
+        inset 0 4px 6px -2px rgba(10,18,38,0.4), /* hinge shadow */
+        inset 0 0 0 1px rgba(255,255,255,0.35),
+        inset 0 -8px 14px rgba(16,29,58,0.14);
+    }
+    .deck-top::before {
+      /* keyboard well */
+      content: ""; position: absolute; left: 7%; right: 7%; top: 9%; height: 54%;
+      border-radius: 10px;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.12) 0 2px, transparent 2px 41px),
+        repeating-linear-gradient(180deg, #8ea1c0 0 15px, #a9b9d3 15px 19px);
+      box-shadow: inset 0 2px 6px rgba(16,29,58,0.35);
+    }
+    .deck-top::after {
+      /* trackpad */
+      content: ""; position: absolute; left: 34%; right: 34%; top: 70%; height: 22%;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #d3dcec, #c2cfe3);
+      box-shadow: inset 0 0 0 1px rgba(16,29,58,0.18), inset 0 1px 2px rgba(255,255,255,0.7);
+    }
+    .deck-front {
+      /* front edge of the base, standing at the near side of the deck plane */
+      position: absolute; top: 0; left: 0; right: 0; height: 17px;
+      transform: translateZ(var(--base-depth));
       background: linear-gradient(180deg, #e6ebf5 0%, #c3cee2 35%, #93a5c4 80%, #64769a 100%);
       border-radius: 2px 2px 16px 16px / 2px 2px 11px 11px;
       box-shadow:
@@ -203,24 +299,19 @@ description: "We build websites and automate your business: social media, AI pho
         inset 0 -2px 3px rgba(16,29,58,0.4),
         0 16px 26px rgba(16,29,58,0.22);
     }
-    .deck::before {
+    .deck-front::before {
       /* thumb notch */
       content: ""; position: absolute; left: 50%; transform: translateX(-50%);
       top: 0; width: 14%; height: 7px; border-radius: 0 0 12px 12px;
       background: linear-gradient(180deg, #8194b6 0%, #aab9d3 90%);
       box-shadow: inset 0 2px 3px rgba(16,29,58,0.38);
     }
-    .deck::after {
-      /* hinge shadow */
-      content: ""; position: absolute; top: 0; left: 1.5%; right: 1.5%; height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(10,18,38,0.32) 12%, rgba(10,18,38,0.32) 88%, transparent);
-    }
 
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
     @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
     @media (prefers-reduced-motion: reduce) {
-      .laptop { animation: fadeUp 0.7s 0.12s ease both; }
+      .laptop-float { animation: fadeUp 0.7s 0.12s ease both; }
       .caret { animation: none; }
     }
 
@@ -386,7 +477,7 @@ description: "We build websites and automate your business: social media, AI pho
       .hero { min-height: 0; padding-bottom: 88px; text-align: center; }
       .hero-inner { grid-template-columns: 1fr; gap: 56px; }
       .hero-actions { justify-content: center; }
-      .laptop { width: min(520px, 100%); }
+      .laptop-float { width: min(520px, 100%); }
     }
     @media (max-width: 860px) {
       .nav-links { display: none; }
@@ -445,17 +536,33 @@ description: "We build websites and automate your business: social media, AI pho
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <div class="laptop">
-        <div class="laptop-lid">
-          <div class="screen">
-            <div class="bar">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="addr">citadel-digital — index.html</span>
+      <div class="laptop-float">
+        <div class="laptop">
+          <!-- plane 2: the lid — folds down toward the viewer about the shared hinge -->
+          <div class="laptop-lid">
+            <!-- front face: the display + bezel (defines the slab's height) -->
+            <div class="screen">
+              <div class="bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="addr">citadel-digital — index.html</span>
+              </div>
+              <pre class="code"><code id="typed"></code><span class="caret"></span></pre>
             </div>
-            <pre class="code"><code id="typed"></code><span class="caret"></span></pre>
+            <!-- Z-stack: solid thickness that follows the rounded corners.
+                 Five layers step back in Z, then .back-cover caps the stack. -->
+            <div class="thickness-layer"></div>
+            <div class="thickness-layer"></div>
+            <div class="thickness-layer"></div>
+            <div class="thickness-layer"></div>
+            <div class="thickness-layer"></div>
+            <div class="back-cover"></div>
+          </div>
+          <!-- plane 1: the base — static keyboard deck in the foreground; its top edge is the hinge -->
+          <div class="laptop-base">
+            <div class="deck-top"></div>
+            <div class="deck-front"></div>
           </div>
         </div>
-        <div class="deck"></div>
       </div>
     </div>
   </div>
@@ -628,6 +735,78 @@ description: "We build websites and automate your business: social media, AI pho
       if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 76, behavior: 'smooth' }); }
     });
   });
+
+  /* ── Hero laptop: the navbar pushes the lid shut as you scroll ──
+     The lid stays fully open until its top edge nears the nav, then folds down
+     TOWARD the viewer (negative rotateX) just enough each frame to keep the tip
+     below the nav's bottom edge, landing flat on the keyboard deck exactly when
+     the hinge gets there. The eye sits above the screen (perspective-origin
+     50% 30%), so past the eye line the tip drops below the hinge and the lid's
+     back casing covers the deck from top to bottom. */
+  (function () {
+    const visual = document.querySelector('.hero-visual');
+    const laptop = document.querySelector('.laptop');
+    const lid = document.querySelector('.laptop-lid');
+    const screen = document.querySelector('.screen');
+    const base = document.querySelector('.laptop-base');
+    if (!visual || !laptop || !lid || !base) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
+    const P = parseFloat(getComputedStyle(laptop).perspective) || 2000;
+    const MARGIN = 12; // headroom for the ±11px float bob so the open lid never pokes into the nav
+    // Layout-based page offset; a rect measurement would be skewed by the float/fadeUp transforms.
+    const topOf = el => { let y = 0; for (; el; el = el.offsetParent) y += el.offsetTop; return y; };
+
+    gsap.set(lid, { transformOrigin: '50% 100%' });
+    const setLid = gsap.quickSetter(lid, 'rotateX', 'deg');
+    const setGlow = gsap.quickSetter(visual, '--glow');
+
+    let H = lid.offsetHeight; // hinge-to-tip distance
+    let E = 0;     // eye height above the hinge line
+    let shutY = 0; // projected tip position when fully shut (below the hinge)
+    function measure() {
+      H = lid.offsetHeight;
+      E = H - 0.30 * laptop.offsetHeight; // perspective-origin is 50% 30%
+      shutY = -E * H / (P - H);
+      base.style.setProperty('--base-depth', H + 'px'); // deck depth == lid height, so the closed lid covers it exactly
+    }
+
+    // Projected y of the lid tip above the hinge when folded toward the viewer by theta.
+    const tipY = th => E + (H * Math.cos(th) - E) * P / (P - H * Math.sin(th));
+
+    // Smallest-enough fold that puts the projected tip at `target` px above the hinge.
+    function angleFor(target) {
+      if (target >= H) return 0;
+      if (target <= shutY) return Math.PI / 2;
+      let lo = 0, hi = Math.PI / 2;
+      for (let i = 0; i < 24; i++) {
+        const mid = (lo + hi) / 2;
+        if (tipY(mid) > target) lo = mid; else hi = mid;
+      }
+      return (lo + hi) / 2;
+    }
+
+    function apply(self) {
+      const d = self.end - self.scroll(); // current hinge-to-nav-bottom distance
+      const dm = Math.max(0, d - MARGIN);
+      // Remap so the lid is fully flat (tip at shutY) exactly at dm = 0, while the
+      // tip always stays at or below the nav line (target <= dm everywhere).
+      const target = dm >= H ? H : shutY + (H - shutY) * (dm / H);
+      const theta = angleFor(target);
+      const t = theta / (Math.PI / 2);    // 0 = open, 1 = shut
+      setLid(-theta * 180 / Math.PI);     // negative: the lid folds down toward the viewer
+      screen.style.filter = 'brightness(' + (1 - 0.65 * t) + ')';
+      setGlow(1 - t);
+    }
+
+    ScrollTrigger.create({
+      start: 0,
+      end: () => topOf(base) - navH, // hinge line meets the nav's bottom edge
+      onRefresh(self) { measure(); apply(self); },
+      onUpdate: apply,
+    });
+  })();
 
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; io.unobserve(e.target); } });
